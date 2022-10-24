@@ -1,6 +1,17 @@
-﻿using System;
+﻿/*
+ * Project: VehicleRegistrationPlateWinForms
+ * Author: David Kong
+ * Student ID: 30063446
+ * Description:
+ *     This program is a Windows Forms App that provides a GUI for the user to add, edit, delete, and search registration plates in a list as a proof of concep
+ *     
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -37,20 +48,11 @@ namespace VehicleRegistrationPlateWinForms
             {
                 // Read and display all lines of the file into a list registrationPlates
                 registrationPlates = System.IO.File.ReadAllLines(openFileDialog1.FileName).ToList();
-                // Display the list in the listbox
-                listBox1.DataSource = registrationPlates;
+
+                // Refresh listbox
+                refreshListBox1();
             }
         }
-
-        // Select an item in the list box and refocus cursor to the textbox
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Focus the cursor to the textbox
-            textBox1.Focus();
-            // Display the selected item in the textbox
-            textBox1.Text = listBox1.SelectedItem.ToString();
-        }
-
         // Add button adds a new registration plate from textbox1 to the listbox
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -69,14 +71,39 @@ namespace VehicleRegistrationPlateWinForms
             {
                 // Add the registration plate to the list
                 registrationPlates.Add(textBox1.Text);
-                // Display the list in the listbox
-                listBox1.DataSource = null;
-                listBox1.DataSource = registrationPlates;
-                // Clear the textbox
-                textBox1.Clear();
+
+                // Refresh listbox
+                refreshListBox1();
+                listBox1.Update();
+
             }
 
         }
+        //Refresh list box function
+        private void refreshListBox1()
+        {
+            listBox1.Items.Clear();
+            registrationPlates.Sort();
+            foreach (string car in registrationPlates)
+            {
+                listBox1.Items.Add(car);
+            }
+        }
+
+
+        // Select an item in the list box and refocus cursor to the textbox
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Focus the cursor to the textbox
+            textBox1.Focus();
+            // Update text box
+            textBox1.Update();
+            // Update List box
+            listBox1.Update();
+            // Display the selected item in the textbox
+            textBox1.Text = listBox1.SelectedItem.ToString();
+        }
+
 
         // When registration plate is entered in textbox,after Enter key is pressed, add content of textbox to listbox like Add button
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -144,14 +171,64 @@ namespace VehicleRegistrationPlateWinForms
         // Edit button edits an existing registration plate in the listbox
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-                // Edit the registration plate in the list
-                registrationPlates[listBox1.SelectedIndex] = textBox1.Text;
-                // Display the list in the listbox
-                listBox1.DataSource = null;
-                listBox1.DataSource = registrationPlates;
-                // Clear the textbox
-                textBox1.Clear();
+           // Edit button edits an existing registration plate in the listbox
+           
+            
         }
 
+
+
+        /* Chris' example on Dinosaurs
+         *private void btnAdd_Click(object sender, Eventargs e)
+{
+dinosaurList.Add(txtDinosaur.text);
+txtDinosaur.Clear();
+refreshDinosaurListBox();
+//txtDinosaur.Text = "";
+}
+
+private void btnDelete_Click(object sender, Eventargs e)
+{
+//dinosaurList.Remove(txtDinosaur.Text);
+dinosaurList.Remove(listBoxDinosaurs.SelectedItem.toString)
+
+}
+
+refreshDinosaurListBox()
+{
+
+listBoxDinosaurs.Items.Clear();
+for (int = 0; i < dinosaurList.Count;  i++)
+{
+	listBoxDinosaurs.Items.Add(dinosaurList[i]);
+}
+
+}
+         * 
+         * 
+         * 
+         * 
+         * 
+         * Frank's example
+         * 
+         * if item[0] == 'z':
+         *   item = item.substring(1)
+         * else:
+         *  item = "z" + item
+         *  update listbox
+         * 
+         * 
+         * 
+         * string filename =""
+           for(int i =1, i < 1000; i++)
+           {
+           filename = "demo" + i.ToString("000")+".txt";
+           if(!File.Exists(filename)) break;
+           }
+           using(StreamWriter sw = new StreamWriter(filename))
+           {
+           sw.WriteLine("Test");
+           }
+         */
     }
 }

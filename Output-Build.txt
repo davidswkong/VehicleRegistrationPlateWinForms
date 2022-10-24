@@ -1,0 +1,4 @@
+﻿Build started...
+1>------ Build started: Project: VehicleRegistrationPlateWinForms, Configuration: Debug Any CPU ------
+1>G:\Other computers\My Laptop\1 TAFE\C Sharp One - ICTPRG440 ICTPRG437 ICTICT435 BFF9\# Assessments\AT2\AT2Q1\VehicleRegistrationPlateWinForms\VehicleRegistrationPlateWinForms\Form1.cs(69,17,69,32): error CS0103: The name 'refreshlistbox1' does not exist in the current context
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========

@@ -108,9 +108,6 @@
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // Double clicking on a listbox item will also delete the item
-            this.listBox1.DoubleClick += new System.EventHandler(this.buttonDelete_Click);
-
             // 
             // buttonBinarySearch
             // 
@@ -137,8 +134,8 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 9;
-            // Selecting an item in listbox will display the rego in the textbox
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // buttonClear
             // 
