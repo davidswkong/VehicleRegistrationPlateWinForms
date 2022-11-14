@@ -3,7 +3,7 @@
  * Author: David Kong
  * Student ID: 30063446
  * Description:
- *     This program is a Windows Forms App that provides a GUI for the user to add, edit, delete, and search registration plates in a list as a proof of concep
+ *     This program is a Windows Forms App that provides a GUI for the user to add, edit, delete, and search registration plates in a list as a proof of concept
  *     
  */
 
@@ -74,8 +74,6 @@ namespace VehicleRegistrationPlateWinForms
 
                 // Refresh listbox
                 refreshListBox1();
-                listBox1.Update();
-
             }
 
         }
@@ -94,14 +92,9 @@ namespace VehicleRegistrationPlateWinForms
         // Select an item in the list box and refocus cursor to the textbox
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Focus the cursor to the textbox
-            textBox1.Focus();
-            // Update text box
-            textBox1.Update();
-            // Update List box
-            listBox1.Update();
             // Display the selected item in the textbox
             textBox1.Text = listBox1.SelectedItem.ToString();
+
         }
 
 
@@ -132,7 +125,7 @@ namespace VehicleRegistrationPlateWinForms
                 // Creates new file, writes strings from registrationPlates to new file, closes file
                 System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
                 // Display the updated list in the listbox
-                listBox1.DataSource = registrationPlates;
+                // listBox1.DataSource = registrationPlates;
             }
         }
 
@@ -144,8 +137,11 @@ namespace VehicleRegistrationPlateWinForms
             registrationPlates.Remove(listBox1.SelectedItem.ToString());
 
             // Display the updated list in the listbox
-            listBox1.DataSource = null;
-            listBox1.DataSource = registrationPlates;
+            // listBox1.DataSource = null;
+            // listBox1.DataSource = registrationPlates;
+
+            // Refresh listBox1
+            refreshListBox1();
 
             // Refocus cursor back on the textbox
             textBox1.Focus();
@@ -171,11 +167,30 @@ namespace VehicleRegistrationPlateWinForms
         // Edit button edits an existing registration plate in the listbox
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-           // Edit button edits an existing registration plate in the listbox
-           
-            
-        }
+            if (listBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a registration plate to edit");
+            }
+            else
+            {
+                // Update content in textbox to selected index of the listbox
+                registrationPlates[listBox1.SelectedIndex] = textBox1.Text;
+                // Update listbox
+                refreshListBox1();
 
+                // Refocus cursor back on the textbox
+                textBox1.Focus();
+            }
+
+            /*
+            // Update the registration plate in the list with the altered registration plate in the textbox
+            registrationPlates[listBox1.SelectedIndex] = textBox1.Text;
+            // Clear the textbox
+            textBox1.Clear();
+            // Refocus cursor back on the textbox
+            textBox1.Focus();
+            */
+        }
 
 
         /* Chris' example on Dinosaurs
