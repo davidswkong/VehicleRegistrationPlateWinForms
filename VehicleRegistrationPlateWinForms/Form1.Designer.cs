@@ -38,7 +38,7 @@
             this.buttonBinarySearch = new System.Windows.Forms.Button();
             this.buttonLinearSearch = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -105,7 +105,7 @@
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 6;
-            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.Text = "Exit (Delete)";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -117,6 +117,7 @@
             this.buttonBinarySearch.TabIndex = 7;
             this.buttonBinarySearch.Text = "Binary Search";
             this.buttonBinarySearch.UseVisualStyleBackColor = true;
+            this.buttonBinarySearch.Click += new System.EventHandler(this.buttonBinarySearch_Click);
             // 
             // buttonLinearSearch
             // 
@@ -137,14 +138,15 @@
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
-            // buttonClear
+            // buttonReset
             // 
-            this.buttonClear.Location = new System.Drawing.Point(355, 144);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(75, 23);
-            this.buttonClear.TabIndex = 10;
-            this.buttonClear.Text = "Clear";
-            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonReset.Location = new System.Drawing.Point(345, 144);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(99, 23);
+            this.buttonReset.TabIndex = 10;
+            this.buttonReset.Text = "Reset (Clear)";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonTag
             // 
@@ -161,7 +163,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 221);
             this.Controls.Add(this.buttonTag);
-            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.buttonLinearSearch);
             this.Controls.Add(this.buttonBinarySearch);
@@ -190,7 +192,7 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonBinarySearch;
         private System.Windows.Forms.Button buttonLinearSearch;
-        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonTag;
         private System.Windows.Forms.ListBox listBox1;
     }

@@ -77,7 +77,7 @@ namespace VehicleRegistrationPlateWinForms
             }
 
         }
-        //Refresh list box function
+        //Refresh list box function - clears listbox1, sorts registrationPlates list, for each item in list add items to listbox
         private void refreshListBox1()
         {
             listBox1.Items.Clear();
@@ -181,16 +181,61 @@ namespace VehicleRegistrationPlateWinForms
                 // Refocus cursor back on the textbox
                 textBox1.Focus();
             }
+        }
 
-            /*
-            // Update the registration plate in the list with the altered registration plate in the textbox
-            registrationPlates[listBox1.SelectedIndex] = textBox1.Text;
-            // Clear the textbox
+        // Reset button clears all registration plates from the registrationPlates List, listBox1, and text box
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            registrationPlates.Clear();
+            listBox1.Items.Clear();
             textBox1.Clear();
-            // Refocus cursor back on the textbox
-            textBox1.Focus();
+            refreshListBox1();
+        }
+
+        private void buttonBinarySearch_Click(object sender, EventArgs e)
+        {
+            /*
+            comparisonCounter = 0;
+            int min = 0;
+            int max = arraySize - 1;
+            if (!(Int32.TryParse(TextBoxSearch.Text, out int target)))
+            {
+                TextBoxMessage.Text = "You must enter an integer";
+                return;
+            }
+            while (min <= max)
+            {
+                comparisonCounter++;
+                int mid = (min + max) / 2;
+                if (target == integerArray[mid])
+                {
+                    TextBoxMessage.Text = target + " Found at index " + mid +
+                        "\r\n" + "Number of comparisons " + comparisonCounter;
+                    TextBoxSearch.Clear();
+                    TextBoxSearch.Focus();
+                    return;
+                }
+                else if (integerArray[mid] >= target)
+                {
+                    max = mid - 1;
+                }
+                else
+                {
+                    min = mid + 1;
+                }
+            }
+            TextBoxMessage.Text = "Not Found, try again." + "\r\n" + "Number of comparisons " + comparisonCounter;
+            TextBoxSearch.Clear();
+            TextBoxSearch.Focus();
             */
         }
+
+
+
+
+
+
+
 
 
         /* Chris' example on Dinosaurs
