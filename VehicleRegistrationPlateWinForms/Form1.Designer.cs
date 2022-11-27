@@ -127,6 +127,7 @@
             this.buttonLinearSearch.TabIndex = 8;
             this.buttonLinearSearch.Text = "Linear Search";
             this.buttonLinearSearch.UseVisualStyleBackColor = true;
+            this.buttonLinearSearch.Click += new System.EventHandler(this.buttonLinearSearch_Click);
             // 
             // listBox1
             // 

@@ -14,10 +14,12 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace VehicleRegistrationPlateWinForms
 {
@@ -116,19 +118,64 @@ namespace VehicleRegistrationPlateWinForms
             // Set the current project solution directory to default directory
             saveFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 
+            // Set the properties on saveFileDialog1 so the user is 
+            // prompted to create the file if it doesn't exist 
+            // or overwrite the file if it does exist.
+            // saveFileDialog1.CreatePrompt = true;
+            // saveFileDialog1.OverwritePrompt = true;
+
             // Set the filter to look for text files
             saveFileDialog1.Filter = "Text Files|*.txt";
 
-            // Save the data. Show the dialog box
+
+            
+            // Set the initial filename to demo_00.txt
+            int count = 0;
+            saveFileDialog1.FileName = "demo_0" + count.ToString() + ".txt";
+            
+            String fileName_initial = saveFileDialog1.FileName;
+            String fileName_current = fileName_initial;
+
+            // If the file exists, increment the number in the filename
+            if (File.Exists(fileName_initial))
+            {
+                count++;
+                fileName_current = "demo_0" + count.ToString() + ".txt";
+            }
+            else
+            {
+                saveFileDialog1.FileName = "demo_0" + count.ToString() + ".txt";
+            }
+
+            // Show the dialog box
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Write the data to the file
+                System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
+            }
+
+
+                
+                /*
+                fileName_current = Path.GetDirectoryName(fileName_initial)
+                     + Path.DirectorySeparatorChar
+                     + Path.GetFileNameWithoutExtension(fileName_initial)
+                     + count.ToString()
+                     + Path.GetExtension(fileName_initial);
+                */
+            }
+
+            // Save the data. Show the dialog box
+            /*if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 // Creates new file, writes strings from registrationPlates to new file, closes file
                 System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
-                // Display the updated list in the listbox
-                // listBox1.DataSource = registrationPlates;
+                                             
             }
-        }
+            */// Create a FORM closing method using the save method so all data from the List<> will be written back to a single text file called “demo_##.txt” file which is auto incremented (ie demo_01.txt, demo_02.txt, etc).
 
+
+      
         // Delete an existing registration plate from the listbox
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -194,52 +241,74 @@ namespace VehicleRegistrationPlateWinForms
 
         private void buttonBinarySearch_Click(object sender, EventArgs e)
         {
-            /*
-            comparisonCounter = 0;
-            int min = 0;
-            int max = arraySize - 1;
-            if (!(Int32.TryParse(TextBoxSearch.Text, out int target)))
+            // Binary search for registration plate in list
+            int index = registrationPlates.BinarySearch(textBox1.Text);
+            if (index < 0)
             {
-                TextBoxMessage.Text = "You must enter an integer";
-                return;
+                MessageBox.Show("Registration plate not found");
             }
-            while (min <= max)
+            else
             {
-                comparisonCounter++;
-                int mid = (min + max) / 2;
-                if (target == integerArray[mid])
-                {
-                    TextBoxMessage.Text = target + " Found at index " + mid +
-                        "\r\n" + "Number of comparisons " + comparisonCounter;
-                    TextBoxSearch.Clear();
-                    TextBoxSearch.Focus();
-                    return;
-                }
-                else if (integerArray[mid] >= target)
-                {
-                    max = mid - 1;
-                }
-                else
-                {
-                    min = mid + 1;
-                }
+                // Display the registration plate in the listbox
+                listBox1.SelectedIndex = index;
             }
-            TextBoxMessage.Text = "Not Found, try again." + "\r\n" + "Number of comparisons " + comparisonCounter;
-            TextBoxSearch.Clear();
-            TextBoxSearch.Focus();
-            */
         }
 
+        private void buttonLinearSearch_Click(object sender, EventArgs e)
+        {
+            // Linear search for registration plate in list
+            int index = registrationPlates.IndexOf(textBox1.Text);
+            if (index < 0)
+            {
+                MessageBox.Show("Registration plate not found");
+            }
+            else
+            {
+                // Display the registration plate in the listbox
+                listBox1.SelectedIndex = index;
+            }
+        }
+    }
+}
 
 
+/*
+comparisonCounter = 0;
+int min = 0;
+int max = arraySize - 1;
+if (!(Int32.TryParse(TextBoxSearch.Text, out int target)))
+{
+    TextBoxMessage.Text = "You must enter an integer";
+    return;
+}
+while (min <= max)
+{
+    comparisonCounter++;
+    int mid = (min + max) / 2;
+    if (target == integerArray[mid])
+    {
+        TextBoxMessage.Text = target + " Found at index " + mid +
+            "\r\n" + "Number of comparisons " + comparisonCounter;
+        TextBoxSearch.Clear();
+        TextBoxSearch.Focus();
+        return;
+    }
+    else if (integerArray[mid] >= target)
+    {
+        max = mid - 1;
+    }
+    else
+    {
+        min = mid + 1;
+    }
+}
+TextBoxMessage.Text = "Not Found, try again." + "\r\n" + "Number of comparisons " + comparisonCounter;
+TextBoxSearch.Clear();
+TextBoxSearch.Focus();
+*/
 
-
-
-
-
-
-        /* Chris' example on Dinosaurs
-         *private void btnAdd_Click(object sender, Eventargs e)
+/* Chris' example on Dinosaurs
+ *private void btnAdd_Click(object sender, Eventargs e)
 {
 dinosaurList.Add(txtDinosaur.text);
 txtDinosaur.Clear();
@@ -260,35 +329,33 @@ refreshDinosaurListBox()
 listBoxDinosaurs.Items.Clear();
 for (int = 0; i < dinosaurList.Count;  i++)
 {
-	listBoxDinosaurs.Items.Add(dinosaurList[i]);
+listBoxDinosaurs.Items.Add(dinosaurList[i]);
 }
 
 }
-         * 
-         * 
-         * 
-         * 
-         * 
-         * Frank's example
-         * 
-         * if item[0] == 'z':
-         *   item = item.substring(1)
-         * else:
-         *  item = "z" + item
-         *  update listbox
-         * 
-         * 
-         * 
-         * string filename =""
-           for(int i =1, i < 1000; i++)
-           {
-           filename = "demo" + i.ToString("000")+".txt";
-           if(!File.Exists(filename)) break;
-           }
-           using(StreamWriter sw = new StreamWriter(filename))
-           {
-           sw.WriteLine("Test");
-           }
-         */
-    }
-}
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Frank's example
+ * 
+ * if item[0] == 'z':
+ *   item = item.substring(1)
+ * else:
+ *  item = "z" + item
+ *  update listbox
+ * 
+ * 
+ * 
+ * string filename =""
+   for(int i =1, i < 1000; i++)
+   {
+   filename = "demo" + i.ToString("000")+".txt";
+   if(!File.Exists(filename)) break;
+   }
+   using(StreamWriter sw = new StreamWriter(filename))
+   {
+   sw.WriteLine("Test");
+   }
+ */
