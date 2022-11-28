@@ -40,6 +40,9 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOpen
@@ -91,7 +94,7 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(253, 60);
+            this.buttonEdit.Location = new System.Drawing.Point(158, 69);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
             this.buttonEdit.TabIndex = 5;
@@ -101,7 +104,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(253, 89);
+            this.buttonDelete.Location = new System.Drawing.Point(158, 98);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 6;
@@ -111,7 +114,7 @@
             // 
             // buttonBinarySearch
             // 
-            this.buttonBinarySearch.Location = new System.Drawing.Point(52, 139);
+            this.buttonBinarySearch.Location = new System.Drawing.Point(52, 69);
             this.buttonBinarySearch.Name = "buttonBinarySearch";
             this.buttonBinarySearch.Size = new System.Drawing.Size(90, 23);
             this.buttonBinarySearch.TabIndex = 7;
@@ -121,7 +124,7 @@
             // 
             // buttonLinearSearch
             // 
-            this.buttonLinearSearch.Location = new System.Drawing.Point(52, 169);
+            this.buttonLinearSearch.Location = new System.Drawing.Point(52, 99);
             this.buttonLinearSearch.Name = "buttonLinearSearch";
             this.buttonLinearSearch.Size = new System.Drawing.Size(90, 23);
             this.buttonLinearSearch.TabIndex = 8;
@@ -132,16 +135,16 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(334, 43);
+            this.listBox1.Location = new System.Drawing.Point(239, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.Size = new System.Drawing.Size(120, 420);
             this.listBox1.TabIndex = 9;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(345, 144);
+            this.buttonReset.Location = new System.Drawing.Point(25, 174);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(99, 23);
             this.buttonReset.TabIndex = 10;
@@ -151,18 +154,35 @@
             // 
             // buttonTag
             // 
-            this.buttonTag.Location = new System.Drawing.Point(503, 43);
+            this.buttonTag.Location = new System.Drawing.Point(158, 127);
             this.buttonTag.Name = "buttonTag";
             this.buttonTag.Size = new System.Drawing.Size(75, 23);
             this.buttonTag.TabIndex = 11;
             this.buttonTag.Text = "Tag";
             this.buttonTag.UseVisualStyleBackColor = true;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 435);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(401, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 221);
+            this.ClientSize = new System.Drawing.Size(401, 457);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonTag);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.listBox1);
@@ -177,6 +197,9 @@
             this.Controls.Add(this.buttonOpen);
             this.Name = "Form1";
             this.Text = "Vehicle Registration Plate App";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,6 +219,8 @@
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonTag;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

@@ -27,6 +27,7 @@ namespace VehicleRegistrationPlateWinForms
         public Form1()
         {
             InitializeComponent();
+            toolStripStatusLabel1.Text = "Ready";
         }
 
         // The global data structure is a List<> of type string
@@ -61,12 +62,12 @@ namespace VehicleRegistrationPlateWinForms
             // Error trapping if Null or Empty
             if (string.IsNullOrEmpty(textBox1.Text))
             {
-                MessageBox.Show("Please enter a registration plate");
+                toolStripStatusLabel1.Text = "Please enter a registration plate";
             }
             // Ensure rego plate is unique, disallow duplicates to be added (show error message)
             else if (registrationPlates.Contains(textBox1.Text))
             {
-                MessageBox.Show("Registration plate already exists");
+                toolStripStatusLabel1.Text = "Registration plate already exists";
             }
             else
             {
@@ -93,9 +94,11 @@ namespace VehicleRegistrationPlateWinForms
         // Select an item in the list box and refocus cursor to the textbox
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Display the selected item in the textbox
-            textBox1.Text = listBox1.SelectedItem.ToString();
-
+            if (listBox1.SelectedIndex != -1)
+            {
+                // Display the selected item in the textbox
+                textBox1.Text = listBox1.SelectedItem.ToString();
+            }
         }
 
 
@@ -126,31 +129,6 @@ namespace VehicleRegistrationPlateWinForms
             // Set the filter to look for text files
             saveFileDialog1.Filter = "Text Files|*.txt";
 
-
-            
-            // Set the initial filename to demo_00.txt
-            int count = 0;
-            saveFileDialog1.FileName = "demo_0" + count.ToString() + ".txt";
-            
-            String fileName_initial = saveFileDialog1.FileName;
-            String fileName_current = fileName_initial;
-
-            // If the file exists, increment the number in the filename
-            if (File.Exists(fileName_initial))
-            {
-                count++;
-                fileName_current = "demo_0" + count.ToString() + ".txt";
-            }
-            // If the file doesn't exist, save the filename as initial filename
-            else
-            {
-                fileName_current = fileName_initial;
-            }
-            
-            {
-                saveFileDialog1.FileName = "demo_0" + count.ToString() + ".txt";
-            }
-
             // Show the dialog box
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -158,20 +136,34 @@ namespace VehicleRegistrationPlateWinForms
                 System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
             }
 
-                           
-                /*
-                fileName_current = Path.GetDirectoryName(fileName_initial)
-                     + Path.DirectorySeparatorChar
-                     + Path.GetFileNameWithoutExtension(fileName_initial)
-                     + count.ToString()
-                     + Path.GetExtension(fileName_initial);
-                */
-            }
+        }
 
         // Create a FORM closing method using the save method so all data from the List<> will be written back to a single text file called “demo_##.txt” file which is auto incremented (ie demo_01.txt, demo_02.txt, etc).
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Set the initial filename to demo_00.txt
+            for (int count = 1; count <= 999; count++)
+            {
+
+                string fileName = "demo_" + count.ToString("000") + ".txt";
 
 
-      
+                // If the file exists, increment the number in the filename
+                if (File.Exists(fileName))
+                {
+                    count++;
+                    continue;
+                }
+
+                // Write the data to the file
+                System.IO.File.WriteAllLines(fileName, registrationPlates);
+                break;
+                
+            }
+                
+        }
+
+
         // Delete an existing registration plate from the listbox
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -212,7 +204,7 @@ namespace VehicleRegistrationPlateWinForms
         {
             if (listBox1.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a registration plate to edit");
+                toolStripStatusLabel1.Text = "Please select a registration plate to edit";
             }
             else
             {
@@ -241,29 +233,35 @@ namespace VehicleRegistrationPlateWinForms
             int index = registrationPlates.BinarySearch(textBox1.Text);
             if (index < 0)
             {
-                MessageBox.Show("Registration plate not found");
+                toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is not found";
             }
             else
             {
                 // Display the registration plate in the listbox
                 listBox1.SelectedIndex = index;
+                toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is number {index + 1} in the list";
             }
         }
 
         private void buttonLinearSearch_Click(object sender, EventArgs e)
         {
             // Linear search for registration plate in list
-            int index = registrationPlates.IndexOf(textBox1.Text);
-            if (index < 0)
+            for (int i = 0; i < registrationPlates.Count; i++)
             {
-                MessageBox.Show("Registration plate not found");
+                
+                if (registrationPlates[i] == textBox1.Text)
+                {
+                    listBox1.SelectedIndex = i;
+                    toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is number {i + 1} in the list";
+                    return;
+                }
             }
-            else
-            {
-                // Display the registration plate in the listbox
-                listBox1.SelectedIndex = index;
-            }
+            toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is not found";
+            textBox1.Clear();
+            textBox1.Focus();
         }
+
+
     }
 }
 
