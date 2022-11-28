@@ -4,7 +4,6 @@
  * Student ID: 30063446
  * Description:
  *     This program is a Windows Forms App that provides a GUI for the user to add, edit, delete, and search registration plates in a list as a proof of concept
- *     
  */
 
 
@@ -142,7 +141,12 @@ namespace VehicleRegistrationPlateWinForms
                 count++;
                 fileName_current = "demo_0" + count.ToString() + ".txt";
             }
+            // If the file doesn't exist, save the filename as initial filename
             else
+            {
+                fileName_current = fileName_initial;
+            }
+            
             {
                 saveFileDialog1.FileName = "demo_0" + count.ToString() + ".txt";
             }
@@ -154,8 +158,7 @@ namespace VehicleRegistrationPlateWinForms
                 System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
             }
 
-
-                
+                           
                 /*
                 fileName_current = Path.GetDirectoryName(fileName_initial)
                      + Path.DirectorySeparatorChar
@@ -165,14 +168,7 @@ namespace VehicleRegistrationPlateWinForms
                 */
             }
 
-            // Save the data. Show the dialog box
-            /*if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                // Creates new file, writes strings from registrationPlates to new file, closes file
-                System.IO.File.WriteAllLines(saveFileDialog1.FileName, registrationPlates);
-                                             
-            }
-            */// Create a FORM closing method using the save method so all data from the List<> will be written back to a single text file called “demo_##.txt” file which is auto incremented (ie demo_01.txt, demo_02.txt, etc).
+        // Create a FORM closing method using the save method so all data from the List<> will be written back to a single text file called “demo_##.txt” file which is auto incremented (ie demo_01.txt, demo_02.txt, etc).
 
 
       
@@ -307,37 +303,7 @@ TextBoxSearch.Clear();
 TextBoxSearch.Focus();
 */
 
-/* Chris' example on Dinosaurs
- *private void btnAdd_Click(object sender, Eventargs e)
-{
-dinosaurList.Add(txtDinosaur.text);
-txtDinosaur.Clear();
-refreshDinosaurListBox();
-//txtDinosaur.Text = "";
-}
-
-private void btnDelete_Click(object sender, Eventargs e)
-{
-//dinosaurList.Remove(txtDinosaur.Text);
-dinosaurList.Remove(listBoxDinosaurs.SelectedItem.toString)
-
-}
-
-refreshDinosaurListBox()
-{
-
-listBoxDinosaurs.Items.Clear();
-for (int = 0; i < dinosaurList.Count;  i++)
-{
-listBoxDinosaurs.Items.Add(dinosaurList[i]);
-}
-
-}
- * 
- * 
- * 
- * 
- * 
+/* 
  * Frank's example
  * 
  * if item[0] == 'z':
