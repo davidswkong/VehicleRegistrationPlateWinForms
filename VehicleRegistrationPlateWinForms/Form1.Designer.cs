@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelRego = new System.Windows.Forms.Label();
@@ -42,6 +43,17 @@
             this.buttonTag = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTipOpen = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSave = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAdd = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipExitDelete = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipTag = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipBinarySearch = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipLinearSearch = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipResetClear = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipListBox = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipTextBox = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +64,7 @@
             this.buttonOpen.Size = new System.Drawing.Size(75, 23);
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "Open";
+            this.toolTipOpen.SetToolTip(this.buttonOpen, "Opens a file containing a list of registration plates");
             this.buttonOpen.UseVisualStyleBackColor = true;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
@@ -62,6 +75,7 @@
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "Save";
+            this.toolTipSave.SetToolTip(this.buttonSave, "Saves the list of registration plates to a file");
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -80,6 +94,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
+            this.toolTipTextBox.SetToolTip(this.textBox1, "Displays a selected registration plate or accepts user input for manual entry of " +
+        "registration plate");
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // buttonAdd
@@ -89,6 +105,7 @@
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 4;
             this.buttonAdd.Text = "Add";
+            this.toolTipAdd.SetToolTip(this.buttonAdd, "Adds a registration plate to the list");
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -99,6 +116,7 @@
             this.buttonEdit.Size = new System.Drawing.Size(75, 23);
             this.buttonEdit.TabIndex = 5;
             this.buttonEdit.Text = "Edit";
+            this.toolTipEdit.SetToolTip(this.buttonEdit, "Edits a selected registration plate");
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
@@ -109,6 +127,7 @@
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 6;
             this.buttonDelete.Text = "Exit (Delete)";
+            this.toolTipExitDelete.SetToolTip(this.buttonDelete, "Deletes a selected registration plate from the list");
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -119,6 +138,7 @@
             this.buttonBinarySearch.Size = new System.Drawing.Size(90, 23);
             this.buttonBinarySearch.TabIndex = 7;
             this.buttonBinarySearch.Text = "Binary Search";
+            this.toolTipBinarySearch.SetToolTip(this.buttonBinarySearch, "Searches for a registration plate with a binary search algorithm");
             this.buttonBinarySearch.UseVisualStyleBackColor = true;
             this.buttonBinarySearch.Click += new System.EventHandler(this.buttonBinarySearch_Click);
             // 
@@ -129,6 +149,7 @@
             this.buttonLinearSearch.Size = new System.Drawing.Size(90, 23);
             this.buttonLinearSearch.TabIndex = 8;
             this.buttonLinearSearch.Text = "Linear Search";
+            this.toolTipLinearSearch.SetToolTip(this.buttonLinearSearch, "Searches a registration plate with a Linear Search algorithm");
             this.buttonLinearSearch.UseVisualStyleBackColor = true;
             this.buttonLinearSearch.Click += new System.EventHandler(this.buttonLinearSearch_Click);
             // 
@@ -139,6 +160,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 420);
             this.listBox1.TabIndex = 9;
+            this.toolTipListBox.SetToolTip(this.listBox1, "Displays a list of registration plates");
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
@@ -149,6 +171,7 @@
             this.buttonReset.Size = new System.Drawing.Size(99, 23);
             this.buttonReset.TabIndex = 10;
             this.buttonReset.Text = "Reset (Clear)";
+            this.toolTipResetClear.SetToolTip(this.buttonReset, "Resets or clears the list");
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
@@ -159,7 +182,9 @@
             this.buttonTag.Size = new System.Drawing.Size(75, 23);
             this.buttonTag.TabIndex = 11;
             this.buttonTag.Text = "Tag";
+            this.toolTipTag.SetToolTip(this.buttonTag, "Tags or untags a selected registration plate");
             this.buttonTag.UseVisualStyleBackColor = true;
+            this.buttonTag.Click += new System.EventHandler(this.buttonTag_Click);
             // 
             // statusStrip1
             // 
@@ -176,6 +201,51 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolTipOpen
+            // 
+            this.toolTipOpen.ToolTipTitle = "Open";
+            this.toolTipOpen.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTipOpen_Popup);
+            // 
+            // toolTipSave
+            // 
+            this.toolTipSave.ToolTipTitle = "Save";
+            // 
+            // toolTipAdd
+            // 
+            this.toolTipAdd.ToolTipTitle = "Add";
+            // 
+            // toolTipEdit
+            // 
+            this.toolTipEdit.ToolTipTitle = "Edit";
+            // 
+            // toolTipExitDelete
+            // 
+            this.toolTipExitDelete.ToolTipTitle = "Exit (Delete)";
+            // 
+            // toolTipTag
+            // 
+            this.toolTipTag.ToolTipTitle = "Tag";
+            // 
+            // toolTipBinarySearch
+            // 
+            this.toolTipBinarySearch.ToolTipTitle = "Binary Search";
+            // 
+            // toolTipLinearSearch
+            // 
+            this.toolTipLinearSearch.ToolTipTitle = "Linear Search";
+            // 
+            // toolTipResetClear
+            // 
+            this.toolTipResetClear.ToolTipTitle = "Reset (Clear)";
+            // 
+            // toolTipListBox
+            // 
+            this.toolTipListBox.ToolTipTitle = "List Box";
+            // 
+            // toolTipTextBox
+            // 
+            this.toolTipTextBox.ToolTipTitle = "Text Box";
             // 
             // Form1
             // 
@@ -221,6 +291,17 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolTip toolTipOpen;
+        private System.Windows.Forms.ToolTip toolTipSave;
+        private System.Windows.Forms.ToolTip toolTipAdd;
+        private System.Windows.Forms.ToolTip toolTipEdit;
+        private System.Windows.Forms.ToolTip toolTipExitDelete;
+        private System.Windows.Forms.ToolTip toolTipBinarySearch;
+        private System.Windows.Forms.ToolTip toolTipLinearSearch;
+        private System.Windows.Forms.ToolTip toolTipResetClear;
+        private System.Windows.Forms.ToolTip toolTipTag;
+        private System.Windows.Forms.ToolTip toolTipTextBox;
+        private System.Windows.Forms.ToolTip toolTipListBox;
     }
 }
 

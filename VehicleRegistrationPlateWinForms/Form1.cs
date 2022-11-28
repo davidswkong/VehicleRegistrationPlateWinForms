@@ -142,7 +142,7 @@ namespace VehicleRegistrationPlateWinForms
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Set the initial filename to demo_00.txt
-            for (int count = 1; count <= 999; count++)
+            for (int count = 0; count <= 999; count++)
             {
 
                 string fileName = "demo_" + count.ToString("000") + ".txt";
@@ -168,12 +168,12 @@ namespace VehicleRegistrationPlateWinForms
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             // Remove the registration plate from the list and listbox
+            if (listBox1.SelectedIndex == -1)
+            {
+                toolStripStatusLabel1.Text = "Please select a registration plate to delete";
+                return;
+            }
             registrationPlates.Remove(textBox1.Text);
-            registrationPlates.Remove(listBox1.SelectedItem.ToString());
-
-            // Display the updated list in the listbox
-            // listBox1.DataSource = null;
-            // listBox1.DataSource = registrationPlates;
 
             // Refresh listBox1
             refreshListBox1();
@@ -239,6 +239,7 @@ namespace VehicleRegistrationPlateWinForms
             {
                 // Display the registration plate in the listbox
                 listBox1.SelectedIndex = index;
+                // Display tool strip status
                 toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is number {index + 1} in the list";
             }
         }
@@ -256,12 +257,47 @@ namespace VehicleRegistrationPlateWinForms
                     return;
                 }
             }
+            // Display tool strip status
             toolStripStatusLabel1.Text = $"Registration plate {textBox1.Text} is not found";
+            // Clear and refocus textbox
             textBox1.Clear();
             textBox1.Focus();
         }
 
 
+        private void buttonTag_Click(object sender, EventArgs e)
+        {
+            // Tag condition (to tag registration plate with "z" prefix)
+            if (registrationPlates[listBox1.SelectedIndex][0] != 'z')
+            {
+                // Add "z" as a prefix to the registration plate
+                registrationPlates[listBox1.SelectedIndex] = "z" + registrationPlates[listBox1.SelectedIndex];               
+                // Update content in textbox to selected index of the listbox
+                textBox1.Text = registrationPlates[listBox1.SelectedIndex];
+                // Update listbox
+                refreshListBox1();
+                // Refocus cursor back on the textbox
+                textBox1.Focus();
+            }
+            
+            // Untag condition (to remove "z" from tagged registration plate)
+            else
+            {
+                // Remove z from registration plate
+                registrationPlates[listBox1.SelectedIndex] = registrationPlates[listBox1.SelectedIndex].Substring(1);
+                textBox1.Text = registrationPlates[listBox1.SelectedIndex];
+                // Update listbox
+                refreshListBox1();
+                // Refocus cursor back on the textbox
+                textBox1.Focus();
+             }
+            
+        }
+
+        private void toolTipOpen_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
     }
 }
 
