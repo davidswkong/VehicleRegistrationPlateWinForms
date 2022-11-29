@@ -1,4 +1,5 @@
 # Vehicle Registration Plate WinForms
+*Student Project*
 
 Vehicle Registration Plate WinForms is a Windows Forms prototype app that is a car park tracking and billing system for a fictional company Active Systems PTY.
 It demonstrates the use of a List<string> to collect and process the vehicle registration plate information. 
