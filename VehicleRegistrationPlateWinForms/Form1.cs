@@ -1,7 +1,6 @@
 ﻿/*
  * Project: VehicleRegistrationPlateWinForms
  * Author: David Kong
- * Student ID: 30063446
  * Description:
  *     This program is a Windows Forms App that provides a GUI for the user to add, edit, delete, and search registration plates in a list as a proof of concept
  */
@@ -292,11 +291,6 @@ namespace VehicleRegistrationPlateWinForms
                 textBox1.Focus();
              }
             
-        }
-
-        private void toolTipOpen_Popup(object sender, PopupEventArgs e)
-        {
-
         }
     }
 }
